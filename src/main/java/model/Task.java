@@ -3,6 +3,8 @@ package main.java.model;
 import java.util.ArrayList;
 import java.util.List;
 import main.java.model.enums.Priority;
+import main.java.model.state.TaskState;
+import main.java.model.state.TodoState;
 import main.java.observer.Observer;
 
 public class Task {
@@ -11,6 +13,7 @@ public class Task {
     private String description;
     private Priority priority;
     private User responsible;
+    private TaskState state;
 
     private final List<Observer> observers;
 
@@ -18,7 +21,23 @@ public class Task {
         this.title = title;
         this.description = description;
         this.priority = priority;
+        this.state = new TodoState(this);
         this.observers = new ArrayList<>();
+    }
+
+    public void execute() {
+        state.execute();
+        notifyObservers("Tarefa iniciada: " + title);
+    }
+
+    public void complete() {
+        state.complete();
+        notifyObservers("Tarefa concluída: " + title);
+    }
+
+    public void reopen() {
+        state.reopen();
+        notifyObservers("Tarefa reaberta: " + title);
     }
 
     public void addObserver(Observer observer) {
@@ -73,6 +92,14 @@ public class Task {
         notifyObservers("Responsável definido: " + responsible.getName());
     }
 
+    public TaskState getState() {
+        return state;
+    }
+
+    public void setState(TaskState state) {
+        this.state = state;
+    }
+
     @Override
     public String toString() {
         return (
@@ -82,6 +109,8 @@ public class Task {
             '\'' +
             ", prioridade = " +
             priority +
+            ", estado = " +
+            state.getStateName() +
             '}'
         );
     }
