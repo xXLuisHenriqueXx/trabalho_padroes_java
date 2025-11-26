@@ -1,20 +1,20 @@
-package main.java;
+package main;
 
+import factory.PriorityTaskFactory;
+import factory.TaskFactory;
 import java.util.*;
-import main.java.factory.PriorityTaskFactory;
-import main.java.factory.TaskFactory;
-import main.java.model.Board;
-import main.java.model.Task;
-import main.java.model.TaskList;
-import main.java.model.User;
-import main.java.model.enums.Priority;
-import main.java.model.state.CompleteState;
-import main.java.model.state.InProgressState;
-import main.java.model.state.TodoState;
-import main.java.service.BoardService;
-import main.java.service.TaskListService;
-import main.java.service.TaskService;
-import main.java.singleton.TaskManager;
+import model.Board;
+import model.Task;
+import model.TaskList;
+import model.User;
+import model.enums.Priority;
+import model.state.CompleteState;
+import model.state.InProgressState;
+import model.state.TodoState;
+import service.BoardService;
+import service.TaskListService;
+import service.TaskService;
+import singleton.TaskManager;
 
 public class Main {
 

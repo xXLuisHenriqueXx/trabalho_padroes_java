@@ -1,8 +1,8 @@
-package main.java.model;
+package model;
 
+import command.Command;
 import java.util.ArrayList;
 import java.util.List;
-import main.java.command.Command;
 
 public class TaskList {
 

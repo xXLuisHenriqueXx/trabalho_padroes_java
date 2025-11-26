@@ -1,11 +1,11 @@
-package main.java.model;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import main.java.model.enums.Priority;
-import main.java.model.state.TaskState;
-import main.java.model.state.TodoState;
-import main.java.observer.Observer;
+import model.enums.Priority;
+import model.state.TaskState;
+import model.state.TodoState;
+import observer.Observer;
 
 public class Task {
 

@@ -1,4 +1,4 @@
-package main.java.observer;
+package observer;
 
 public interface Observer {
     void update(String message);

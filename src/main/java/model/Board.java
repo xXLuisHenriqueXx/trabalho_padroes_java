@@ -1,8 +1,8 @@
-package main.java.model;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import main.java.observer.Observer;
+import observer.Observer;
 
 public class Board {
 

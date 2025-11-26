@@ -1,7 +1,7 @@
-package main.java.command;
+package command;
 
-import main.java.model.Task;
-import main.java.model.TaskList;
+import model.Task;
+import model.TaskList;
 
 public class AddTaskCommand implements Command {
 

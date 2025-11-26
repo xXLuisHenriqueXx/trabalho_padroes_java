@@ -1,9 +1,9 @@
-package main.java.singleton;
+package singleton;
 
 import java.util.ArrayList;
 import java.util.List;
-import main.java.model.Board;
-import main.java.model.User;
+import model.Board;
+import model.User;
 
 public class TaskManager {
 

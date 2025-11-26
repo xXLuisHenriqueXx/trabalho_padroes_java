@@ -1,7 +1,7 @@
-package main.java.factory;
+package factory;
 
-import main.java.model.Task;
-import main.java.model.enums.Priority;
+import model.Task;
+import model.enums.Priority;
 
 public class PriorityTaskFactory implements TaskFactory {
 

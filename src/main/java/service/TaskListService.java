@@ -1,14 +1,14 @@
 package service;
 
+import command.AddTaskCommand;
+import command.Command;
+import command.MoveTaskCommand;
+import factory.TaskFactory;
 import java.util.Optional;
-import main.java.command.AddTaskCommand;
-import main.java.command.Command;
-import main.java.command.MoveTaskCommand;
-import main.java.factory.TaskFactory;
-import main.java.model.Board;
-import main.java.model.Task;
-import main.java.model.TaskList;
-import main.java.model.enums.Priority;
+import model.Board;
+import model.Task;
+import model.TaskList;
+import model.enums.Priority;
 
 public class TaskListService {
 

@@ -1,6 +1,6 @@
-package main.java.model.state;
+package model.state;
 
-import main.java.model.Task;
+import model.Task;
 
 public abstract class TaskState {
 

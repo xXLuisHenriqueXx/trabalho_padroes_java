@@ -2,10 +2,10 @@ package service;
 
 import java.util.List;
 import java.util.Optional;
-import main.java.model.Board;
-import main.java.model.TaskList;
-import main.java.model.User;
-import main.java.singleton.TaskManager;
+import model.Board;
+import model.TaskList;
+import model.User;
+import singleton.TaskManager;
 
 public class BoardService {
 

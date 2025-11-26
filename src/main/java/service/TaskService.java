@@ -1,12 +1,12 @@
 package service;
 
+import command.ChangeStatusCommand;
+import command.Command;
 import java.util.Optional;
-import main.java.command.ChangeStatusCommand;
-import main.java.command.Command;
-import main.java.model.Task;
-import main.java.model.TaskList;
-import main.java.model.User;
-import main.java.model.state.TaskState;
+import model.Task;
+import model.TaskList;
+import model.User;
+import model.state.TaskState;
 
 public class TaskService {
 

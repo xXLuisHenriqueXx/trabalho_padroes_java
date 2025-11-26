@@ -1,7 +1,7 @@
-package main.java.command;
+package command;
 
-import main.java.model.Task;
-import main.java.model.state.TaskState;
+import model.Task;
+import model.state.TaskState;
 
 public class ChangeStatusCommand implements Command {
 
