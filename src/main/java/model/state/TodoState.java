@@ -1,8 +1,14 @@
 package model.state;
 
 import model.Task;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TodoState extends TaskState {
+
+    public static final Logger LOGGER = LoggerFactory.getLogger(
+        TodoState.class
+    );
 
     public TodoState(Task task) {
         super(task);
@@ -15,7 +21,7 @@ public class TodoState extends TaskState {
 
     @Override
     public void complete() {
-        System.out.println(
+        LOGGER.info(
             "Não é possível concluir uma tarefa que ainda não foi iniciada."
         );
     }

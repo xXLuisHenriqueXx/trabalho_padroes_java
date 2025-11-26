@@ -9,8 +9,14 @@ import model.Board;
 import model.Task;
 import model.TaskList;
 import model.enums.Priority;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TaskListService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(
+        TaskListService.class
+    );
 
     public TaskList createTaskList(Board board, String taskListName) {
         if (board == null || taskListName == null || taskListName.isBlank()) {
@@ -22,7 +28,7 @@ public class TaskListService {
         TaskList taskList = new TaskList(taskListName);
         board.addTaskList(taskList);
 
-        System.out.println(
+        LOGGER.info(
             "Lista criada: " + taskListName + " no quadro " + board.getName()
         );
 
@@ -45,7 +51,7 @@ public class TaskListService {
         Command command = new AddTaskCommand(taskList, task);
         taskList.executeCommand(command);
 
-        System.out.println(
+        LOGGER.info(
             "Tarefa '" +
                 title +
                 "' adicionada à lista '" +
@@ -68,7 +74,7 @@ public class TaskListService {
         Command command = new MoveTaskCommand(origin, destiny, task);
         origin.executeCommand(command);
 
-        System.out.println(
+        LOGGER.info(
             "Executado comando de mover tarefa '" + task.getTitle() + "'."
         );
     }

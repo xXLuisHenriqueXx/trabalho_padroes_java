@@ -3,8 +3,14 @@ package model;
 import command.Command;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TaskList {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(
+        TaskList.class
+    );
 
     private String name;
     private final List<Task> tasks;
@@ -19,7 +25,7 @@ public class TaskList {
     public void addTask(Task task) {
         if (task != null && !tasks.contains(task)) {
             tasks.add(task);
-            System.out.println(
+            LOGGER.info(
                 "Tarefa adicionada à lista '" + name + "': " + task.getTitle()
             );
         }
@@ -27,7 +33,7 @@ public class TaskList {
 
     public void removeTask(Task task) {
         if (tasks.remove(task)) {
-            System.out.println(
+            LOGGER.info(
                 "Tarefa removida da lista '" + name + "': " + task.getTitle()
             );
         }
@@ -37,7 +43,7 @@ public class TaskList {
         if (tasks.contains(task) && destiny != null) {
             removeTask(task);
             destiny.addTask(task);
-            System.out.println(
+            LOGGER.info(
                 "Tarefa movida de '" +
                     name +
                     "' para '" +

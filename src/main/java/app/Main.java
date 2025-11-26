@@ -1,4 +1,4 @@
-package main;
+package app;
 
 import factory.PriorityTaskFactory;
 import factory.TaskFactory;
@@ -11,12 +11,16 @@ import model.enums.Priority;
 import model.state.CompleteState;
 import model.state.InProgressState;
 import model.state.TodoState;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import service.BoardService;
 import service.TaskListService;
 import service.TaskService;
 import singleton.TaskManager;
 
 public class Main {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -26,20 +30,20 @@ public class Main {
     private static final TaskService taskService = new TaskService();
 
     public static void main(String[] args) {
-        System.out.println("===== Sistema de Gerenciamento de Tarefas =====");
+        LOGGER.info("===== Sistema de Gerenciamento de Tarefas =====");
 
         User currentUser = createInitialUser();
         Board board = createInitialBoard(currentUser);
 
         while (true) {
-            System.out.println("\n--- MENU ---");
-            System.out.println("1. Criar Lista");
-            System.out.println("2. Criar Tarefa");
-            System.out.println("3. Mover Tarefa");
-            System.out.println("4. Alterar Estado da Tarefa");
-            System.out.println("5. Ver Listas e Tarefas");
-            System.out.println("6. Ver Minhas Notificações");
-            System.out.println("0. Sair");
+            LOGGER.info("\n--- MENU ---");
+            LOGGER.info("1. Criar Lista");
+            LOGGER.info("2. Criar Tarefa");
+            LOGGER.info("3. Mover Tarefa");
+            LOGGER.info("4. Alterar Estado da Tarefa");
+            LOGGER.info("5. Ver Listas e Tarefas");
+            LOGGER.info("6. Ver Minhas Notificações");
+            LOGGER.info("0. Sair");
             System.out.print("Escolha: ");
 
             int option = Integer.parseInt(scanner.nextLine());
@@ -52,11 +56,11 @@ public class Main {
                 case 5 -> showBoard(board);
                 case 6 -> showNotifications(currentUser);
                 case 0 -> {
-                    System.out.println("Saindo...");
+                    LOGGER.info("Saindo...");
 
                     return;
                 }
-                default -> System.out.println("Opção inválida.");
+                default -> LOGGER.info("Opção inválida.");
             }
         }
     }
@@ -78,7 +82,7 @@ public class Main {
         Board board = boardService.createBoard(name);
         boardService.addMember(board, user);
 
-        System.out.println("Board criado!");
+        LOGGER.info("Board criado!");
 
         return board;
     }
@@ -89,7 +93,7 @@ public class Main {
 
         taskListService.createTaskList(board, name);
 
-        System.out.println("Lista criada!");
+        LOGGER.info("Lista criada!");
     }
 
     private static void createTask(Board board) {
@@ -102,7 +106,7 @@ public class Main {
         System.out.print("Descrição: ");
         String description = scanner.nextLine();
 
-        System.out.println("Prioridade: 1-BAIXA | 2-MEDIA | 3-ALTA");
+        LOGGER.info("Prioridade: 1-BAIXA | 2-MEDIA | 3-ALTA");
         int option = Integer.parseInt(scanner.nextLine());
         Priority priority = switch (option) {
             case 1 -> Priority.LOW;
@@ -111,7 +115,7 @@ public class Main {
             default -> Priority.MEDIUM;
         };
 
-        System.out.println("Tipo de tarefa: 1-Prioritária");
+        LOGGER.info("Tipo de tarefa: 1-Prioritária");
         int type = Integer.parseInt(scanner.nextLine());
         TaskFactory factory = (type == 1)
             ? new PriorityTaskFactory()
@@ -125,7 +129,7 @@ public class Main {
             priority
         );
 
-        System.out.println("Tarefa criada!");
+        LOGGER.info("Tarefa criada!");
     }
 
     private static void moveTask(Board board) {
@@ -142,7 +146,7 @@ public class Main {
 
         taskListService.moveTaskWithCommand(origin, destiny, task);
 
-        System.out.println("Tarefa movida!");
+        LOGGER.info("Tarefa movida!");
     }
 
     private static void changeInternalState(Task task, int option) {
@@ -159,7 +163,7 @@ public class Main {
                 task,
                 new CompleteState(task)
             );
-            default -> System.out.println("Estado inválido.");
+            default -> LOGGER.info("Estado inválido.");
         }
     }
 
@@ -172,27 +176,25 @@ public class Main {
         Task task = chooseTask(taskList);
         if (task == null) return;
 
-        System.out.println(
-            "Novo estado: 1-A FAZER | 2-EM ANDAMENTO | 3-CONCLUÍDA"
-        );
+        LOGGER.info("Novo estado: 1-A FAZER | 2-EM ANDAMENTO | 3-CONCLUÍDA");
         int option = Integer.parseInt(scanner.nextLine());
 
         changeInternalState(task, option);
 
-        System.out.println("Estado alterado!");
+        LOGGER.info("Estado alterado!");
     }
 
     private static void showBoard(Board board) {
-        System.out.println("\n==== QUADRO: " + board.getName() + " ====");
+        LOGGER.info("\n==== QUADRO: " + board.getName() + " ====");
 
         for (TaskList taskList : board.getTaskLists()) {
-            System.out.println("\n[Lista] " + taskList.getName());
+            LOGGER.info("\n[Lista] " + taskList.getName());
             showTasks(taskList);
         }
     }
 
     private static void showNotifications(User user) {
-        System.out.println("\n=== Suas notificações ===");
+        LOGGER.info("\n=== Suas notificações ===");
         user.viewNotifications();
     }
 
@@ -200,22 +202,22 @@ public class Main {
         List<TaskList> taskLists = board.getTaskLists();
 
         if (taskLists.isEmpty()) {
-            System.out.println("Não há listas ainda.");
+            LOGGER.info("Não há listas ainda.");
 
             return null;
         }
 
-        System.out.println("\nEscolha uma lista:");
+        LOGGER.info("\nEscolha uma lista:");
 
         for (int i = 0; i < taskLists.size(); i++) {
-            System.out.println((i + 1) + ". " + taskLists.get(i).getName());
+            LOGGER.info((i + 1) + ". " + taskLists.get(i).getName());
         }
 
         System.out.print("Opção: ");
         int option = Integer.parseInt(scanner.nextLine()) - 1;
 
         if (option < 0 || option >= taskLists.size()) {
-            System.out.println("Inválida.");
+            LOGGER.info("Inválida.");
             return null;
         }
 
@@ -224,7 +226,7 @@ public class Main {
 
     private static void showTasks(TaskList taskList) {
         if (taskList.getTasks().isEmpty()) {
-            System.out.println("  (sem tarefas)");
+            LOGGER.info("  (sem tarefas)");
 
             return;
         }
@@ -232,7 +234,7 @@ public class Main {
         for (int i = 0; i < taskList.getTasks().size(); i++) {
             Task task = taskList.getTasks().get(i);
 
-            System.out.println(
+            LOGGER.info(
                 "  " +
                     (i + 1) +
                     ". " +
@@ -246,7 +248,7 @@ public class Main {
 
     private static Task chooseTask(TaskList taskList) {
         if (taskList.getTasks().isEmpty()) {
-            System.out.println("Nenhuma tarefa nessa lista.");
+            LOGGER.info("Nenhuma tarefa nessa lista.");
 
             return null;
         }
@@ -255,7 +257,7 @@ public class Main {
         int option = Integer.parseInt(scanner.nextLine()) - 1;
 
         if (option < 0 || option >= taskList.getTasks().size()) {
-            System.out.println("Inválida.");
+            LOGGER.info("Inválida.");
 
             return null;
         }

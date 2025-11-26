@@ -1,8 +1,14 @@
 package model.state;
 
 import model.Task;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class InProgressState extends TaskState {
+
+    public static final Logger LOGGER = LoggerFactory.getLogger(
+        InProgressState.class
+    );
 
     public InProgressState(Task task) {
         super(task);
@@ -10,7 +16,7 @@ public class InProgressState extends TaskState {
 
     @Override
     public void execute() {
-        System.out.println("A tarefa já está em progresso.");
+        LOGGER.info("A tarefa já está em progresso.");
     }
 
     @Override

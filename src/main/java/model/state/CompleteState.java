@@ -1,8 +1,14 @@
 package model.state;
 
 import model.Task;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CompleteState extends TaskState {
+
+    public static final Logger LOGGER = LoggerFactory.getLogger(
+        CompleteState.class
+    );
 
     public CompleteState(Task task) {
         super(task);
@@ -10,7 +16,7 @@ public class CompleteState extends TaskState {
 
     @Override
     public void execute() {
-        System.out.println(
+        LOGGER.info(
             "A tarefa já foi concluída. Reabra antes de iniciar novamente."
         );
     }

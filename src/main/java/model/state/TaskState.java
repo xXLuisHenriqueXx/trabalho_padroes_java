@@ -6,7 +6,7 @@ public abstract class TaskState {
 
     protected Task task;
 
-    public TaskState(Task task) {
+    protected TaskState(Task task) {
         this.task = task;
     }
 

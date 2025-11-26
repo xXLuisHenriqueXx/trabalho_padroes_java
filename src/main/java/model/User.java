@@ -3,8 +3,12 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 import observer.Observer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class User implements Observer {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(User.class);
 
     private String name;
     private String email;
@@ -33,18 +37,18 @@ public class User implements Observer {
     }
 
     public void viewNotifications() {
-        System.out.println("Notificações de " + name + ":");
+        LOGGER.info("Notificações de " + name + ":");
         if (notifications.isEmpty()) {
-            System.out.println("Nenhuma notificação no momento.");
+            LOGGER.info("Nenhuma notificação no momento.");
         } else {
-            notifications.forEach(msg -> System.out.println(" - " + msg));
+            notifications.forEach(msg -> LOGGER.info(" - " + msg));
         }
     }
 
     @Override
     public void update(String message) {
         notifications.add(message);
-        System.out.println("[" + name + "] recebeu notificação: " + message);
+        LOGGER.info("[" + name + "] recebeu notificação: " + message);
     }
 
     public String getName() {

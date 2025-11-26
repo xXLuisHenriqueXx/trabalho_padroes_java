@@ -7,8 +7,14 @@ import model.Task;
 import model.TaskList;
 import model.User;
 import model.state.TaskState;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TaskService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(
+        TaskService.class
+    );
 
     public void setResponsible(Task tarefa, User user) {
         if (tarefa == null || user == null) {
@@ -18,7 +24,7 @@ public class TaskService {
         tarefa.setResponsible(user);
         tarefa.notifyObservers("Responsável atribuído: " + user.getName());
 
-        System.out.println(
+        LOGGER.info(
             "Responsável '" +
                 user.getName() +
                 "' atribuído à tarefa '" +
@@ -37,7 +43,7 @@ public class TaskService {
         Command command = new ChangeStatusCommand(task, newState);
         command.execute();
 
-        System.out.println(
+        LOGGER.info(
             "Estado da tarefa '" +
                 task.getTitle() +
                 "' alterado para " +
@@ -50,7 +56,7 @@ public class TaskService {
 
         task.reopen();
 
-        System.out.println("Tarefa reaberta: " + task.getTitle());
+        LOGGER.info("Tarefa reaberta: " + task.getTitle());
     }
 
     public Optional<Task> searchTaskByTitle(TaskList taskList, String title) {

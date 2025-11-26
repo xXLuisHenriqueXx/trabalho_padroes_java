@@ -4,8 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Board;
 import model.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TaskManager {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(
+        TaskManager.class
+    );
 
     private static TaskManager instance;
 
@@ -29,7 +35,7 @@ public class TaskManager {
         if (user != null && !users.contains(user)) {
             users.add(user);
 
-            System.out.println("Usuário registrado: " + user.getName());
+            LOGGER.info("Usuário registrado: " + user.getName());
         }
     }
 
@@ -48,7 +54,7 @@ public class TaskManager {
     public void registerBoard(Board board) {
         if (board != null && !boards.contains(board)) {
             boards.add(board);
-            System.out.println("Quadro registrado: " + board.getName());
+            LOGGER.info("Quadro registrado: " + board.getName());
         }
     }
 

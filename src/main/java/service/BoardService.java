@@ -5,9 +5,15 @@ import java.util.Optional;
 import model.Board;
 import model.TaskList;
 import model.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import singleton.TaskManager;
 
 public class BoardService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(
+        BoardService.class
+    );
 
     private final TaskManager manager = TaskManager.getInstance();
 
@@ -19,7 +25,7 @@ public class BoardService {
         Board board = new Board(name);
         manager.registerBoard(board);
 
-        System.out.println("Quadro criado: " + name);
+        LOGGER.info("Quadro criado: " + name);
 
         return board;
     }
@@ -33,7 +39,7 @@ public class BoardService {
 
         board.addTaskList(taskList);
 
-        System.out.println(
+        LOGGER.info(
             "Lista '" +
                 taskList.getName() +
                 "' adicionada ao board '" +
@@ -50,7 +56,7 @@ public class BoardService {
         board.addMember(user);
         user.addBoard(board);
 
-        System.out.println(
+        LOGGER.info(
             "Usuario '" +
                 user.getName() +
                 "' adicionado ao quadro '" +
