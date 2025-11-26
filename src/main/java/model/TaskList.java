@@ -26,7 +26,9 @@ public class TaskList {
         if (task != null && !tasks.contains(task)) {
             tasks.add(task);
             LOGGER.info(
-                "Tarefa adicionada à lista '" + name + "': " + task.getTitle()
+                "Tarefa adicionada à lista {}: {}'",
+                name,
+                task.getTitle()
             );
         }
     }
@@ -34,7 +36,9 @@ public class TaskList {
     public void removeTask(Task task) {
         if (tasks.remove(task)) {
             LOGGER.info(
-                "Tarefa removida da lista '" + name + "': " + task.getTitle()
+                "Tarefa removida da lista {}: {}'",
+                name,
+                task.getTitle()
             );
         }
     }
@@ -43,13 +47,7 @@ public class TaskList {
         if (tasks.contains(task) && destiny != null) {
             removeTask(task);
             destiny.addTask(task);
-            LOGGER.info(
-                "Tarefa movida de '" +
-                    name +
-                    "' para '" +
-                    destiny.getName() +
-                    "'"
-            );
+            LOGGER.info("Tarefa movida de {} para {}", name, destiny.getName());
         }
     }
 

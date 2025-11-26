@@ -35,7 +35,7 @@ public class TaskManager {
         if (user != null && !users.contains(user)) {
             users.add(user);
 
-            LOGGER.info("Usuário registrado: " + user.getName());
+            LOGGER.info("Usuário registrado: '{}'.", user.getName());
         }
     }
 
@@ -54,7 +54,7 @@ public class TaskManager {
     public void registerBoard(Board board) {
         if (board != null && !boards.contains(board)) {
             boards.add(board);
-            LOGGER.info("Quadro registrado: " + board.getName());
+            LOGGER.info("Quadro registrado: '{}'.", board.getName());
         }
     }
 

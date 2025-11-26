@@ -37,18 +37,18 @@ public class User implements Observer {
     }
 
     public void viewNotifications() {
-        LOGGER.info("Notificações de " + name + ":");
+        LOGGER.info("Notificações de {}:", name);
         if (notifications.isEmpty()) {
             LOGGER.info("Nenhuma notificação no momento.");
         } else {
-            notifications.forEach(msg -> LOGGER.info(" - " + msg));
+            notifications.forEach(msg -> LOGGER.info(" - {}", msg));
         }
     }
 
     @Override
     public void update(String message) {
         notifications.add(message);
-        LOGGER.info("[" + name + "] recebeu notificação: " + message);
+        LOGGER.info("[ {} ] recebeu notificação: {}", name, message);
     }
 
     public String getName() {

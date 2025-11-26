@@ -16,20 +16,18 @@ public class TaskService {
         TaskService.class
     );
 
-    public void setResponsible(Task tarefa, User user) {
-        if (tarefa == null || user == null) {
+    public void setResponsible(Task task, User user) {
+        if (task == null || user == null) {
             throw new IllegalArgumentException("Tarefa ou usuário inválido.");
         }
 
-        tarefa.setResponsible(user);
-        tarefa.notifyObservers("Responsável atribuído: " + user.getName());
+        task.setResponsible(user);
+        task.notifyObservers("Responsável atribuído: " + user.getName());
 
         LOGGER.info(
-            "Responsável '" +
-                user.getName() +
-                "' atribuído à tarefa '" +
-                tarefa.getTitle() +
-                "'."
+            "Responsável '{}' atribuído à tarefa '{}'.",
+            user.getName(),
+            task.getTitle()
         );
     }
 
@@ -44,10 +42,9 @@ public class TaskService {
         command.execute();
 
         LOGGER.info(
-            "Estado da tarefa '" +
-                task.getTitle() +
-                "' alterado para " +
-                newState.getStateName()
+            "Estado da tarefa '{}' alterado para '{}'.",
+            task.getTitle(),
+            newState.getStateName()
         );
     }
 
@@ -56,7 +53,7 @@ public class TaskService {
 
         task.reopen();
 
-        LOGGER.info("Tarefa reaberta: " + task.getTitle());
+        LOGGER.info("Tarefa reaberta: '{}'.", task.getTitle());
     }
 
     public Optional<Task> searchTaskByTitle(TaskList taskList, String title) {

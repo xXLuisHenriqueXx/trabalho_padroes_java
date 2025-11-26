@@ -185,10 +185,10 @@ public class Main {
     }
 
     private static void showBoard(Board board) {
-        LOGGER.info("\n==== QUADRO: " + board.getName() + " ====");
+        LOGGER.info("\n==== QUADRO:  {} ====", board.getName());
 
         for (TaskList taskList : board.getTaskLists()) {
-            LOGGER.info("\n[Lista] " + taskList.getName());
+            LOGGER.info("\n[Lista]  {}", taskList.getName());
             showTasks(taskList);
         }
     }
@@ -210,7 +210,7 @@ public class Main {
         LOGGER.info("\nEscolha uma lista:");
 
         for (int i = 0; i < taskLists.size(); i++) {
-            LOGGER.info((i + 1) + ". " + taskLists.get(i).getName());
+            LOGGER.info("{}. {}", (i + 1), taskLists.get(i).getName());
         }
 
         LOGGER.info("Opção: ");
@@ -235,13 +235,10 @@ public class Main {
             Task task = taskList.getTasks().get(i);
 
             LOGGER.info(
-                "  " +
-                    (i + 1) +
-                    ". " +
-                    task.getTitle() +
-                    " [" +
-                    task.getState().getStateName() +
-                    "]"
+                "{}. {} [{}]",
+                (i + 1),
+                task.getTitle(),
+                task.getState().getStateName()
             );
         }
     }

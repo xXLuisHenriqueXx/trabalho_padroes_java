@@ -29,7 +29,9 @@ public class TaskListService {
         board.addTaskList(taskList);
 
         LOGGER.info(
-            "Lista criada: " + taskListName + " no quadro " + board.getName()
+            "Lista ({}) criada no quadro {}.",
+            taskListName,
+            board.getName()
         );
 
         return taskList;
@@ -52,11 +54,9 @@ public class TaskListService {
         taskList.executeCommand(command);
 
         LOGGER.info(
-            "Tarefa '" +
-                title +
-                "' adicionada à lista '" +
-                taskList.getName() +
-                "'."
+            "Tarefa '{}' adicionada à lista '{}'.",
+            title,
+            taskList.getName()
         );
     }
 
@@ -74,9 +74,7 @@ public class TaskListService {
         Command command = new MoveTaskCommand(origin, destiny, task);
         origin.executeCommand(command);
 
-        LOGGER.info(
-            "Executado comando de mover tarefa '" + task.getTitle() + "'."
-        );
+        LOGGER.info("Executado comando de mover tarefa '{}'.", task.getTitle());
     }
 
     public Optional<TaskList> searchTaskListByName(

@@ -25,7 +25,7 @@ public class BoardService {
         Board board = new Board(name);
         manager.registerBoard(board);
 
-        LOGGER.info("Quadro criado: " + name);
+        LOGGER.info("Quadro criado: {}", name);
 
         return board;
     }
@@ -40,11 +40,9 @@ public class BoardService {
         board.addTaskList(taskList);
 
         LOGGER.info(
-            "Lista '" +
-                taskList.getName() +
-                "' adicionada ao board '" +
-                board.getName() +
-                "'."
+            "Lista '{}' adicionada ao board '{}'.",
+            taskList.getName(),
+            board.getName()
         );
     }
 
@@ -57,11 +55,9 @@ public class BoardService {
         user.addBoard(board);
 
         LOGGER.info(
-            "Usuario '" +
-                user.getName() +
-                "' adicionado ao quadro '" +
-                board.getName() +
-                "'."
+            "Usuario '{}' adicionado ao quadro '{}'.",
+            user.getName(),
+            board.getName()
         );
     }
 
