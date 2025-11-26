@@ -44,7 +44,7 @@ public class Main {
             LOGGER.info("5. Ver Listas e Tarefas");
             LOGGER.info("6. Ver Minhas Notificações");
             LOGGER.info("0. Sair");
-            System.out.print("Escolha: ");
+            LOGGER.info("Escolha: ");
 
             int option = Integer.parseInt(scanner.nextLine());
 
@@ -66,7 +66,7 @@ public class Main {
     }
 
     private static User createInitialUser() {
-        System.out.print("Digite seu nome: ");
+        LOGGER.info("Digite seu nome: ");
         String name = scanner.nextLine();
 
         User user = new User(name, name.toLowerCase() + "@email.com");
@@ -76,7 +76,7 @@ public class Main {
     }
 
     private static Board createInitialBoard(User user) {
-        System.out.print("Nome do board: ");
+        LOGGER.info("Nome do board: ");
         String name = scanner.nextLine();
 
         Board board = boardService.createBoard(name);
@@ -88,7 +88,7 @@ public class Main {
     }
 
     private static void createTaskList(Board board) {
-        System.out.print("Nome da lista: ");
+        LOGGER.info("Nome da lista: ");
         String name = scanner.nextLine();
 
         taskListService.createTaskList(board, name);
@@ -100,10 +100,10 @@ public class Main {
         TaskList taskList = chooseTaskList(board);
         if (taskList == null) return;
 
-        System.out.print("Título da tarefa: ");
+        LOGGER.info("Título da tarefa: ");
         String title = scanner.nextLine();
 
-        System.out.print("Descrição: ");
+        LOGGER.info("Descrição: ");
         String description = scanner.nextLine();
 
         LOGGER.info("Prioridade: 1-BAIXA | 2-MEDIA | 3-ALTA");
@@ -213,7 +213,7 @@ public class Main {
             LOGGER.info((i + 1) + ". " + taskLists.get(i).getName());
         }
 
-        System.out.print("Opção: ");
+        LOGGER.info("Opção: ");
         int option = Integer.parseInt(scanner.nextLine()) - 1;
 
         if (option < 0 || option >= taskLists.size()) {
@@ -253,7 +253,7 @@ public class Main {
             return null;
         }
 
-        System.out.print("Escolha a tarefa: ");
+        LOGGER.info("Escolha a tarefa: ");
         int option = Integer.parseInt(scanner.nextLine()) - 1;
 
         if (option < 0 || option >= taskList.getTasks().size()) {

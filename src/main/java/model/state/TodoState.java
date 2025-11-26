@@ -28,7 +28,7 @@ public class TodoState extends TaskState {
 
     @Override
     public void reopen() {
-        System.out.println("A tarefa já está no estado 'A Fazer'.");
+        LOGGER.info("A tarefa já está no estado 'A Fazer'.");
     }
 
     @Override

@@ -23,7 +23,7 @@ public class CompleteState extends TaskState {
 
     @Override
     public void complete() {
-        System.out.println("A tarefa já está concluída.");
+        LOGGER.info("A tarefa já está concluída.");
     }
 
     @Override
