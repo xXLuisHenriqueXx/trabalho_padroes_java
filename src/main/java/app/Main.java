@@ -36,7 +36,7 @@ public class Main {
         Board board = createInitialBoard(currentUser);
 
         while (true) {
-            LOGGER.info("\n--- MENU ---");
+            LOGGER.info("\n===== MENU =====");
             LOGGER.info("1. Criar Lista");
             LOGGER.info("2. Criar Tarefa");
             LOGGER.info("3. Mover Tarefa");
@@ -106,20 +106,22 @@ public class Main {
         LOGGER.info("Descrição: ");
         String description = scanner.nextLine();
 
-        LOGGER.info("Prioridade: 1-BAIXA | 2-MEDIA | 3-ALTA");
-        int option = Integer.parseInt(scanner.nextLine());
-        Priority priority = switch (option) {
-            case 1 -> Priority.LOW;
-            case 2 -> Priority.MEDIUM;
-            case 3 -> Priority.HIGH;
-            default -> Priority.MEDIUM;
-        };
-
-        LOGGER.info("Tipo de tarefa: 1-Prioritária");
+        LOGGER.info("Tipo de tarefa: 1-Prioritária | 2-Simples");
         int type = Integer.parseInt(scanner.nextLine());
-        TaskFactory factory = (type == 1)
-            ? new PriorityTaskFactory()
-            : new PriorityTaskFactory();
+        TaskFactory factory = taskService.chooseFactory(type);
+
+        Priority priority = Priority.LOW;
+
+        if (factory instanceof PriorityTaskFactory) {
+            LOGGER.info("Prioridade: 1-BAIXA | 2-MÉDIA | 3-ALTA");
+            int option = Integer.parseInt(scanner.nextLine());
+            priority = switch (option) {
+                case 1 -> Priority.LOW;
+                case 2 -> Priority.MEDIUM;
+                case 3 -> Priority.HIGH;
+                default -> Priority.MEDIUM;
+            };
+        }
 
         taskListService.addTaskWithCommand(
             taskList,
@@ -235,8 +237,9 @@ public class Main {
             Task task = taskList.getTasks().get(i);
 
             LOGGER.info(
-                "{}. {} [{}]",
+                "{}. [{}]  {} [{}]",
                 (i + 1),
+                task.getPriority(),
                 task.getTitle(),
                 task.getState().getStateName()
             );

@@ -16,6 +16,7 @@ model\state\InProgressState.class
 service\BoardService.class
 service\TaskService.class
 model\TaskList.class
+factory\SimpleTaskFactory.class
 factory\TaskFactory.class
 model\User.class
 singleton\TaskManager.class

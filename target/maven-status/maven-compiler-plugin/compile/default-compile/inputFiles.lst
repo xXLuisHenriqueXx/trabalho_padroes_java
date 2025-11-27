@@ -4,6 +4,7 @@ C:\dev\trabalho_padroes_java\src\main\java\command\ChangeStatusCommand.java
 C:\dev\trabalho_padroes_java\src\main\java\command\Command.java
 C:\dev\trabalho_padroes_java\src\main\java\command\MoveTaskCommand.java
 C:\dev\trabalho_padroes_java\src\main\java\factory\PriorityTaskFactory.java
+C:\dev\trabalho_padroes_java\src\main\java\factory\SimpleTaskFactory.java
 C:\dev\trabalho_padroes_java\src\main\java\factory\TaskFactory.java
 C:\dev\trabalho_padroes_java\src\main\java\model\Board.java
 C:\dev\trabalho_padroes_java\src\main\java\model\enums\Priority.java

@@ -2,6 +2,9 @@ package service;
 
 import command.ChangeStatusCommand;
 import command.Command;
+import factory.PriorityTaskFactory;
+import factory.SimpleTaskFactory;
+import factory.TaskFactory;
 import java.util.Optional;
 import model.Task;
 import model.TaskList;
@@ -54,6 +57,13 @@ public class TaskService {
         task.reopen();
 
         LOGGER.info("Tarefa reaberta: '{}'.", task.getTitle());
+    }
+
+    public TaskFactory chooseFactory(int type) {
+        return switch (type) {
+            case 1 -> new PriorityTaskFactory();
+            default -> new SimpleTaskFactory();
+        };
     }
 
     public Optional<Task> searchTaskByTitle(TaskList taskList, String title) {
