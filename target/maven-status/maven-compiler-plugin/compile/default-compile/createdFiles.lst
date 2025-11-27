@@ -2,6 +2,7 @@ model\state\CompleteState.class
 model\state\TodoState.class
 model\Task.class
 model\Board.class
+singleton\TaskManager$Holder.class
 model\state\TaskState.class
 model\enums\Priority.class
 app\Main.class

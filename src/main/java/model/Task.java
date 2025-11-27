@@ -104,14 +104,13 @@ public class Task {
     public String toString() {
         return (
             "Tarefa{" +
-            "titulo = '" +
+            "titulo = " +
             title +
-            '\'' +
             ", prioridade = " +
             priority +
             ", estado = " +
             state.getStateName() +
-            '}'
+            "}"
         );
     }
 }

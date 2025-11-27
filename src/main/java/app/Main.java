@@ -1,6 +1,5 @@
 package app;
 
-import factory.PriorityTaskFactory;
 import factory.TaskFactory;
 import java.util.*;
 import model.Board;
@@ -239,7 +238,7 @@ public class Main {
             Task task = taskList.getTasks().get(i);
 
             LOGGER.info(
-                "{}. [{}]  {} [{}]",
+                "{}. [ {} ]  {} [ {} ]",
                 (i + 1),
                 task.getPriority(),
                 task.getTitle(),

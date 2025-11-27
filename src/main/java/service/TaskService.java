@@ -28,7 +28,7 @@ public class TaskService {
         task.notifyObservers("Responsavel atribuido: " + user.getName());
 
         LOGGER.info(
-            "Responsavel '{}' atribuido a tarefa '{}'.",
+            "Responsavel {} atribuido a tarefa {}.",
             user.getName(),
             task.getTitle()
         );
@@ -45,7 +45,7 @@ public class TaskService {
         command.execute();
 
         LOGGER.info(
-            "Estado da tarefa '{}' alterado para '{}'.",
+            "Estado da tarefa {} alterado para {}.",
             task.getTitle(),
             newState.getStateName()
         );
@@ -56,7 +56,7 @@ public class TaskService {
 
         task.reopen();
 
-        LOGGER.info("Tarefa reaberta: '{}'.", task.getTitle());
+        LOGGER.info("Tarefa reaberta: {}.", task.getTitle());
     }
 
     public TaskFactory chooseFactory(int type) {

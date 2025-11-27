@@ -54,7 +54,7 @@ public class TaskListService {
         taskList.executeCommand(command);
 
         LOGGER.info(
-            "Tarefa '{}' adicionada a lista '{}'.",
+            "Tarefa {} adicionada a lista {}.",
             title,
             taskList.getName()
         );
@@ -74,7 +74,7 @@ public class TaskListService {
         Command command = new MoveTaskCommand(origin, destiny, task);
         origin.executeCommand(command);
 
-        LOGGER.info("Executado comando de mover tarefa '{}'.", task.getTitle());
+        LOGGER.info("Executado comando de mover tarefa {}.", task.getTitle());
     }
 
     public Optional<TaskList> searchTaskListByName(

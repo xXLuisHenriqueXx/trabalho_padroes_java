@@ -79,15 +79,13 @@ public class User implements Observer {
     public String toString() {
         return (
             "Usuario{" +
-            "nome = '" +
+            "nome = " +
             name +
-            '\'' +
-            ", email = '" +
+            ", email = " +
             email +
-            '\'' +
             ", quadros = " +
             boards.size() +
-            '}'
+            "}"
         );
     }
 }

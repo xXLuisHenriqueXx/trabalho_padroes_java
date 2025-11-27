@@ -77,14 +77,13 @@ public class Board {
     public String toString() {
         return (
             "Quadro{" +
-            "nome = '" +
+            "nome = " +
             name +
-            '\'' +
             ", listas de tarefa = " +
             taskLists.size() +
             ", membros = " +
             members.size() +
-            '}'
+            "}"
         );
     }
 }

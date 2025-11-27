@@ -40,7 +40,7 @@ public class BoardService {
         board.addTaskList(taskList);
 
         LOGGER.info(
-            "Lista '{}' adicionada ao board '{}'.",
+            "Lista {} adicionada ao board {}.",
             taskList.getName(),
             board.getName()
         );
@@ -55,7 +55,7 @@ public class BoardService {
         user.addBoard(board);
 
         LOGGER.info(
-            "Usuario '{}' adicionado ao quadro '{}'.",
+            "Usuario {} adicionado ao quadro {}.",
             user.getName(),
             board.getName()
         );

@@ -22,13 +22,13 @@ public class TaskManager {
         this.boards = new ArrayList<>();
     }
 
-    private static class Holder {
+    private static class TaskManagerHelper {
 
         private static final TaskManager INSTANCE = new TaskManager();
     }
 
     public static TaskManager getInstance() {
-        return Holder.INSTANCE;
+        return TaskManagerHelper.INSTANCE;
     }
 
     public void registerUser(User user) {

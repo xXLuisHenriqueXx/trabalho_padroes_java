@@ -26,7 +26,7 @@ public class TaskList {
         if (task != null && !tasks.contains(task)) {
             tasks.add(task);
             LOGGER.info(
-                "Tarefa adicionada a lista {}: {}'",
+                "Tarefa adicionada a lista {}: {}",
                 name,
                 task.getTitle()
             );
@@ -36,7 +36,7 @@ public class TaskList {
     public void removeTask(Task task) {
         if (tasks.remove(task)) {
             LOGGER.info(
-                "Tarefa removida da lista {}: {}'",
+                "Tarefa removida da lista {}: {}",
                 name,
                 task.getTitle()
             );
@@ -80,13 +80,7 @@ public class TaskList {
     @Override
     public String toString() {
         return (
-            "Lista{" +
-            "nome = '" +
-            name +
-            '\'' +
-            ", tarefas = " +
-            tasks.size() +
-            '}'
+            "Lista{" + "nome = " + name + ", tarefas = " + tasks.size() + "}"
         );
     }
 }
