@@ -19,7 +19,7 @@ public class BoardService {
 
     public Board createBoard(String name) {
         if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("Nome do quadro inválido.");
+            throw new IllegalArgumentException("Nome do quadro invalido.");
         }
 
         Board board = new Board(name);
@@ -33,7 +33,7 @@ public class BoardService {
     public void addTaskListInBoard(Board board, TaskList taskList) {
         if (board == null || taskList == null) {
             throw new IllegalArgumentException(
-                "Quadro ou Lista de tarefas inválidos."
+                "Quadro ou Lista de tarefas invalidos."
             );
         }
 
@@ -48,7 +48,7 @@ public class BoardService {
 
     public void addMember(Board board, User user) {
         if (board == null || user == null) {
-            throw new IllegalArgumentException("Quadro ou Usuario inválidos.");
+            throw new IllegalArgumentException("Quadro ou Usuario invalidos.");
         }
 
         board.addMember(user);

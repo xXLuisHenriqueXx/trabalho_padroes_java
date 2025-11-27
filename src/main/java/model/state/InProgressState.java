@@ -16,7 +16,7 @@ public class InProgressState extends TaskState {
 
     @Override
     public void execute() {
-        LOGGER.info("A tarefa já está em progresso.");
+        LOGGER.info("A tarefa ja esta em progresso.");
     }
 
     @Override

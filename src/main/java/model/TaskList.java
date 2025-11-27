@@ -26,7 +26,7 @@ public class TaskList {
         if (task != null && !tasks.contains(task)) {
             tasks.add(task);
             LOGGER.info(
-                "Tarefa adicionada à lista {}: {}'",
+                "Tarefa adicionada a lista {}: {}'",
                 name,
                 task.getTitle()
             );

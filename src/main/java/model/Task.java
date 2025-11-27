@@ -32,7 +32,7 @@ public class Task {
 
     public void complete() {
         state.complete();
-        notifyObservers("Tarefa concluída: " + title);
+        notifyObservers("Tarefa concluida: " + title);
     }
 
     public void reopen() {
@@ -62,7 +62,7 @@ public class Task {
 
     public void setTitle(String title) {
         this.title = title;
-        notifyObservers("Título alterado para: " + title);
+        notifyObservers("Titulo alterado para: " + title);
     }
 
     public String getDescription() {
@@ -71,7 +71,7 @@ public class Task {
 
     public void setDescription(String description) {
         this.description = description;
-        notifyObservers("Descrição atualizada.");
+        notifyObservers("Descricao atualizada.");
     }
 
     public Priority getPriority() {
@@ -89,7 +89,7 @@ public class Task {
 
     public void setResponsible(User responsible) {
         this.responsible = responsible;
-        notifyObservers("Responsável definido: " + responsible.getName());
+        notifyObservers("Responsavel definido: " + responsible.getName());
     }
 
     public TaskState getState() {

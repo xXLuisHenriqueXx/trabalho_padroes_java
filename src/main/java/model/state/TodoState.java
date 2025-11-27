@@ -22,13 +22,13 @@ public class TodoState extends TaskState {
     @Override
     public void complete() {
         LOGGER.info(
-            "Não é possível concluir uma tarefa que ainda não foi iniciada."
+            "Nao e possivel concluir uma tarefa que ainda nao foi iniciada."
         );
     }
 
     @Override
     public void reopen() {
-        LOGGER.info("A tarefa já está no estado 'A Fazer'.");
+        LOGGER.info("A tarefa ja esta no estado 'A Fazer'.");
     }
 
     @Override

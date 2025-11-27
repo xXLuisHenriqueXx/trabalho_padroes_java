@@ -35,7 +35,7 @@ public class TaskManager {
         if (user != null && !users.contains(user)) {
             users.add(user);
 
-            LOGGER.info("Usuário registrado: '{}'.", user.getName());
+            LOGGER.info("Usuario registrado: '{}'.", user.getName());
         }
     }
 

@@ -21,7 +21,7 @@ public class TaskListService {
     public TaskList createTaskList(Board board, String taskListName) {
         if (board == null || taskListName == null || taskListName.isBlank()) {
             throw new IllegalArgumentException(
-                "Quadro ou nome de lista inválido."
+                "Quadro ou nome de lista invalido."
             );
         }
 
@@ -45,7 +45,7 @@ public class TaskListService {
         Priority priority
     ) {
         if (taskList == null || factory == null) {
-            throw new IllegalArgumentException("Lista ou fábrica inválida.");
+            throw new IllegalArgumentException("Lista ou fabrica invalida.");
         }
 
         Task task = factory.createTask(title, description, priority);
@@ -54,7 +54,7 @@ public class TaskListService {
         taskList.executeCommand(command);
 
         LOGGER.info(
-            "Tarefa '{}' adicionada à lista '{}'.",
+            "Tarefa '{}' adicionada a lista '{}'.",
             title,
             taskList.getName()
         );
@@ -67,7 +67,7 @@ public class TaskListService {
     ) {
         if (origin == null || destiny == null || task == null) {
             throw new IllegalArgumentException(
-                "Parâmetros inválidos para mover tarefa."
+                "Parametros invalidos para mover tarefa."
             );
         }
 

@@ -17,13 +17,13 @@ public class CompleteState extends TaskState {
     @Override
     public void execute() {
         LOGGER.info(
-            "A tarefa já foi concluída. Reabra antes de iniciar novamente."
+            "A tarefa ja foi concluida. Reabra antes de iniciar novamente."
         );
     }
 
     @Override
     public void complete() {
-        LOGGER.info("A tarefa já está concluída.");
+        LOGGER.info("A tarefa ja esta concluida.");
     }
 
     @Override
@@ -33,6 +33,6 @@ public class CompleteState extends TaskState {
 
     @Override
     public String getStateName() {
-        return "Concluída";
+        return "Concluida";
     }
 }

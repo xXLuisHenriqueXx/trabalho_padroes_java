@@ -42,7 +42,7 @@ public class Main {
             LOGGER.info("3. Mover Tarefa");
             LOGGER.info("4. Alterar Estado da Tarefa");
             LOGGER.info("5. Ver Listas e Tarefas");
-            LOGGER.info("6. Ver Minhas Notificações");
+            LOGGER.info("6. Ver Minhas Notificacoes");
             LOGGER.info("0. Sair");
             LOGGER.info("Escolha: ");
 
@@ -60,7 +60,7 @@ public class Main {
 
                     return;
                 }
-                default -> LOGGER.info("Opção inválida.");
+                default -> LOGGER.info("Opcao invalida.");
             }
         }
     }
@@ -100,20 +100,20 @@ public class Main {
         TaskList taskList = chooseTaskList(board);
         if (taskList == null) return;
 
-        LOGGER.info("Título da tarefa: ");
+        LOGGER.info("Titulo da tarefa: ");
         String title = scanner.nextLine();
 
-        LOGGER.info("Descrição: ");
+        LOGGER.info("Descricao: ");
         String description = scanner.nextLine();
 
-        LOGGER.info("Tipo de tarefa: 1-Prioritária | 2-Simples");
+        LOGGER.info("Tipo de tarefa: 1 - Prioritaria | 2 - Simples");
         int type = Integer.parseInt(scanner.nextLine());
         TaskFactory factory = taskService.chooseFactory(type);
 
         Priority priority = Priority.LOW;
 
         if (factory instanceof PriorityTaskFactory) {
-            LOGGER.info("Prioridade: 1-BAIXA | 2-MÉDIA | 3-ALTA");
+            LOGGER.info("Prioridade: 1 - Baixa | 2 - Media | 3 - Alta");
             int option = Integer.parseInt(scanner.nextLine());
             priority = switch (option) {
                 case 1 -> Priority.LOW;
@@ -165,7 +165,7 @@ public class Main {
                 task,
                 new CompleteState(task)
             );
-            default -> LOGGER.info("Estado inválido.");
+            default -> LOGGER.info("Estado invalido.");
         }
     }
 
@@ -178,7 +178,9 @@ public class Main {
         Task task = chooseTask(taskList);
         if (task == null) return;
 
-        LOGGER.info("Novo estado: 1-A FAZER | 2-EM ANDAMENTO | 3-CONCLUÍDA");
+        LOGGER.info(
+            "Novo estado: 1 - A Fazer | 2 - Em Andamento | 3 - Concluida"
+        );
         int option = Integer.parseInt(scanner.nextLine());
 
         changeInternalState(task, option);
@@ -196,7 +198,7 @@ public class Main {
     }
 
     private static void showNotifications(User user) {
-        LOGGER.info("\n=== Suas notificações ===");
+        LOGGER.info("\n=== Suas notificacoes ===");
         user.viewNotifications();
     }
 
@@ -204,7 +206,7 @@ public class Main {
         List<TaskList> taskLists = board.getTaskLists();
 
         if (taskLists.isEmpty()) {
-            LOGGER.info("Não há listas ainda.");
+            LOGGER.info("Nao ha listas ainda.");
 
             return null;
         }
@@ -215,11 +217,11 @@ public class Main {
             LOGGER.info("{}. {}", (i + 1), taskLists.get(i).getName());
         }
 
-        LOGGER.info("Opção: ");
+        LOGGER.info("Opcao: ");
         int option = Integer.parseInt(scanner.nextLine()) - 1;
 
         if (option < 0 || option >= taskLists.size()) {
-            LOGGER.info("Inválida.");
+            LOGGER.info("Invalida.");
             return null;
         }
 
@@ -257,7 +259,7 @@ public class Main {
         int option = Integer.parseInt(scanner.nextLine()) - 1;
 
         if (option < 0 || option >= taskList.getTasks().size()) {
-            LOGGER.info("Inválida.");
+            LOGGER.info("Invalida.");
 
             return null;
         }

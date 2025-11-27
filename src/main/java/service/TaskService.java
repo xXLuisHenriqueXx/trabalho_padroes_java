@@ -21,14 +21,14 @@ public class TaskService {
 
     public void setResponsible(Task task, User user) {
         if (task == null || user == null) {
-            throw new IllegalArgumentException("Tarefa ou usuário inválido.");
+            throw new IllegalArgumentException("Tarefa ou usuario invalido.");
         }
 
         task.setResponsible(user);
-        task.notifyObservers("Responsável atribuído: " + user.getName());
+        task.notifyObservers("Responsavel atribuido: " + user.getName());
 
         LOGGER.info(
-            "Responsável '{}' atribuído à tarefa '{}'.",
+            "Responsavel '{}' atribuido a tarefa '{}'.",
             user.getName(),
             task.getTitle()
         );
@@ -37,7 +37,7 @@ public class TaskService {
     public void changeStateWithCommand(Task task, TaskState newState) {
         if (task == null || newState == null) {
             throw new IllegalArgumentException(
-                "Parâmetros inválidos para alterar estado."
+                "Parametros invalidos para alterar estado."
             );
         }
 
