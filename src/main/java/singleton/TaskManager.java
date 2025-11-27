@@ -1,6 +1,7 @@
 package singleton;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import model.Board;
 import model.User;
@@ -13,8 +14,6 @@ public class TaskManager {
         TaskManager.class
     );
 
-    private static TaskManager instance;
-
     private final List<User> users;
     private final List<Board> boards;
 
@@ -23,19 +22,19 @@ public class TaskManager {
         this.boards = new ArrayList<>();
     }
 
-    public static TaskManager getInstance() {
-        if (instance == null) {
-            instance = new TaskManager();
-        }
+    private static class Holder {
 
-        return instance;
+        private static final TaskManager INSTANCE = new TaskManager();
+    }
+
+    public static TaskManager getInstance() {
+        return Holder.INSTANCE;
     }
 
     public void registerUser(User user) {
         if (user != null && !users.contains(user)) {
             users.add(user);
-
-            LOGGER.info("Usuario registrado: '{}'.", user.getName());
+            LOGGER.info("Usuario registrado: {}.", user.getName());
         }
     }
 
@@ -48,29 +47,28 @@ public class TaskManager {
     }
 
     public List<User> getUsers() {
-        return users;
+        return Collections.unmodifiableList(users);
     }
 
     public void registerBoard(Board board) {
         if (board != null && !boards.contains(board)) {
             boards.add(board);
-            LOGGER.info("Quadro registrado: '{}'.", board.getName());
+            LOGGER.info("Quadro registrado: {}.", board.getName());
         }
     }
 
     public List<Board> getBoards() {
-        return boards;
+        return Collections.unmodifiableList(boards);
     }
 
     @Override
     public String toString() {
         return (
-            "TaskManager{" +
-            "users=" +
+            "TaskManager{users=" +
             users.size() +
             ", boards=" +
             boards.size() +
-            '}'
+            "}"
         );
     }
 }
