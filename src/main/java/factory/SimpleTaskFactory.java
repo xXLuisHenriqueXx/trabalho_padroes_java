@@ -13,4 +13,9 @@ public class SimpleTaskFactory implements TaskFactory {
     ) {
         return new Task(title, description, Priority.LOW);
     }
+
+    @Override
+    public boolean supportsPriority() {
+        return false;
+    }
 }

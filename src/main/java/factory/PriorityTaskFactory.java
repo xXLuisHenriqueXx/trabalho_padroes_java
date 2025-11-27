@@ -13,4 +13,9 @@ public class PriorityTaskFactory implements TaskFactory {
     ) {
         return new Task(title, description, priority);
     }
+
+    @Override
+    public boolean supportsPriority() {
+        return true;
+    }
 }

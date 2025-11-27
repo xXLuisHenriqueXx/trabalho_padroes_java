@@ -112,7 +112,7 @@ public class Main {
 
         Priority priority = Priority.LOW;
 
-        if (factory instanceof PriorityTaskFactory) {
+        if (factory.supportsPriority()) {
             LOGGER.info("Prioridade: 1 - Baixa | 2 - Media | 3 - Alta");
             int option = Integer.parseInt(scanner.nextLine());
             priority = switch (option) {
