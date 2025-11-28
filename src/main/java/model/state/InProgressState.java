@@ -27,7 +27,7 @@ public class InProgressState extends TaskState {
         task.notifyObservers(
             new NotificationEvent(
                 "Tarefa: " + task.getTitle(),
-                "Tarefa concluída"
+                "Tarefa concluida"
             )
         );
     }

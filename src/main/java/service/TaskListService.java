@@ -3,6 +3,7 @@ package service;
 import command.AddTaskCommand;
 import command.Command;
 import command.MoveTaskCommand;
+import command.RemoveTaskCommand;
 import factory.TaskFactory;
 import java.util.Optional;
 import model.Board;
@@ -75,6 +76,19 @@ public class TaskListService {
         origin.executeCommand(command);
 
         LOGGER.info("Executado comando de mover tarefa {}.", task.getTitle());
+    }
+
+    public void removeTaskWithCommand(TaskList taskList, Task task) {
+        if (taskList == null || task == null) {
+            throw new IllegalArgumentException(
+                "Parametros invalidos para remover tarefa."
+            );
+        }
+
+        Command command = new RemoveTaskCommand(taskList, task);
+        taskList.executeCommand(command);
+
+        LOGGER.info("Executado comando de remover tarefa {}.", task.getTitle());
     }
 
     public Optional<TaskList> searchTaskListByName(

@@ -4,6 +4,7 @@ C:\dev\trabalho_padroes_java\src\main\java\command\AddTaskCommand.java
 C:\dev\trabalho_padroes_java\src\main\java\command\ChangeStatusCommand.java
 C:\dev\trabalho_padroes_java\src\main\java\command\Command.java
 C:\dev\trabalho_padroes_java\src\main\java\command\MoveTaskCommand.java
+C:\dev\trabalho_padroes_java\src\main\java\command\RemoveTaskCommand.java
 C:\dev\trabalho_padroes_java\src\main\java\factory\PriorityTaskFactory.java
 C:\dev\trabalho_padroes_java\src\main\java\factory\SimpleTaskFactory.java
 C:\dev\trabalho_padroes_java\src\main\java\factory\TaskFactory.java
@@ -24,3 +25,4 @@ C:\dev\trabalho_padroes_java\src\main\java\service\BoardService.java
 C:\dev\trabalho_padroes_java\src\main\java\service\TaskListService.java
 C:\dev\trabalho_padroes_java\src\main\java\service\TaskService.java
 C:\dev\trabalho_padroes_java\src\main\java\singleton\TaskManager.java
+C:\dev\trabalho_padroes_java\src\main\java\util\ConsoleUtils.java

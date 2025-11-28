@@ -5,6 +5,7 @@ observer\NotificationEvent.class
 model\enums\Priority.class
 app\Main.class
 observer\Subject.class
+command\RemoveTaskCommand.class
 command\Command.class
 command\MoveTaskCommand.class
 observer\Observer.class
@@ -19,6 +20,7 @@ model\Board.class
 app\controller\AppController.class
 model\state\TaskState.class
 factory\PriorityTaskFactory.class
+util\ConsoleUtils.class
 singleton\TaskManager$TaskManagerHelper.class
 command\ChangeStatusCommand.class
 model\state\InProgressState.class
