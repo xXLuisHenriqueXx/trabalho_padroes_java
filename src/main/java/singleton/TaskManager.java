@@ -60,15 +60,4 @@ public class TaskManager {
     public List<Board> getBoards() {
         return Collections.unmodifiableList(boards);
     }
-
-    @Override
-    public String toString() {
-        return (
-            "TaskManager{users=" +
-            users.size() +
-            ", boards=" +
-            boards.size() +
-            "}"
-        );
-    }
 }

@@ -15,7 +15,10 @@ C:\dev\trabalho_padroes_java\src\main\java\model\state\TodoState.java
 C:\dev\trabalho_padroes_java\src\main\java\model\Task.java
 C:\dev\trabalho_padroes_java\src\main\java\model\TaskList.java
 C:\dev\trabalho_padroes_java\src\main\java\model\User.java
+C:\dev\trabalho_padroes_java\src\main\java\observer\BaseSubject.java
+C:\dev\trabalho_padroes_java\src\main\java\observer\NotificationEvent.java
 C:\dev\trabalho_padroes_java\src\main\java\observer\Observer.java
+C:\dev\trabalho_padroes_java\src\main\java\observer\Subject.java
 C:\dev\trabalho_padroes_java\src\main\java\service\BoardService.java
 C:\dev\trabalho_padroes_java\src\main\java\service\TaskListService.java
 C:\dev\trabalho_padroes_java\src\main\java\service\TaskService.java

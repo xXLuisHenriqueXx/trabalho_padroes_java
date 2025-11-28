@@ -10,6 +10,7 @@ import model.Task;
 import model.TaskList;
 import model.User;
 import model.state.TaskState;
+import observer.NotificationEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,7 +26,12 @@ public class TaskService {
         }
 
         task.setResponsible(user);
-        task.notifyObservers("Responsavel atribuido: " + user.getName());
+        task.notifyObservers(
+            new NotificationEvent(
+                "Tarefa: " + task.getTitle(),
+                "Responsavel alterado para " + user.getName()
+            )
+        );
 
         LOGGER.info(
             "Responsavel {} atribuido a tarefa {}.",

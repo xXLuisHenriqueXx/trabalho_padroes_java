@@ -1,13 +1,12 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
 import model.enums.Priority;
 import model.state.TaskState;
 import model.state.TodoState;
-import observer.Observer;
+import observer.BaseSubject;
+import observer.NotificationEvent;
 
-public class Task {
+public class Task extends BaseSubject {
 
     private String title;
     private String description;
@@ -15,45 +14,35 @@ public class Task {
     private User responsible;
     private TaskState state;
 
-    private final List<Observer> observers;
-
     public Task(String title, String description, Priority priority) {
         this.title = title;
         this.description = description;
         this.priority = priority;
         this.state = new TodoState(this);
-        this.observers = new ArrayList<>();
     }
 
     public void execute() {
         state.execute();
-        notifyObservers("Tarefa iniciada: " + title);
+
+        notifyObservers(
+            new NotificationEvent("Tarefa: " + title, "Executando tarefa")
+        );
     }
 
     public void complete() {
         state.complete();
-        notifyObservers("Tarefa concluida: " + title);
+
+        notifyObservers(
+            new NotificationEvent("Tarefa: " + title, "Tarefa concluida")
+        );
     }
 
     public void reopen() {
         state.reopen();
-        notifyObservers("Tarefa reaberta: " + title);
-    }
 
-    public void addObserver(Observer observer) {
-        if (observer != null && !observers.contains(observer)) {
-            observers.add(observer);
-        }
-    }
-
-    public void removeObserver(Observer observer) {
-        observers.remove(observer);
-    }
-
-    public void notifyObservers(String message) {
-        for (Observer observer : observers) {
-            observer.update("Tarefa [" + title + "]: " + message);
-        }
+        notifyObservers(
+            new NotificationEvent("Tarefa: " + title, "Tarefa reaberta")
+        );
     }
 
     public String getTitle() {
@@ -62,7 +51,13 @@ public class Task {
 
     public void setTitle(String title) {
         this.title = title;
-        notifyObservers("Titulo alterado para: " + title);
+
+        notifyObservers(
+            new NotificationEvent(
+                "Tarefa: " + title,
+                "Titulo alterado para: " + title
+            )
+        );
     }
 
     public String getDescription() {
@@ -71,7 +66,13 @@ public class Task {
 
     public void setDescription(String description) {
         this.description = description;
-        notifyObservers("Descricao atualizada.");
+
+        notifyObservers(
+            new NotificationEvent(
+                "Tarefa: " + title,
+                "Descricao alterada para: " + description
+            )
+        );
     }
 
     public Priority getPriority() {
@@ -80,7 +81,12 @@ public class Task {
 
     public void setPriority(Priority priority) {
         this.priority = priority;
-        notifyObservers("Prioridade alterada para: " + priority);
+        notifyObservers(
+            new NotificationEvent(
+                "Tarefa: " + title,
+                "Prioridade alterada para: " + priority
+            )
+        );
     }
 
     public User getResponsible() {
@@ -89,7 +95,12 @@ public class Task {
 
     public void setResponsible(User responsible) {
         this.responsible = responsible;
-        notifyObservers("Responsavel definido: " + responsible.getName());
+        notifyObservers(
+            new NotificationEvent(
+                "Tarefa: " + title,
+                "Responsavel alterado para: " + responsible.getName()
+            )
+        );
     }
 
     public TaskState getState() {
@@ -98,19 +109,5 @@ public class Task {
 
     public void setState(TaskState state) {
         this.state = state;
-    }
-
-    @Override
-    public String toString() {
-        return (
-            "Tarefa{" +
-            "titulo = " +
-            title +
-            ", prioridade = " +
-            priority +
-            ", estado = " +
-            state.getStateName() +
-            "}"
-        );
     }
 }

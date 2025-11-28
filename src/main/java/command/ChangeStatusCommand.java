@@ -2,6 +2,7 @@ package command;
 
 import model.Task;
 import model.state.TaskState;
+import observer.NotificationEvent;
 
 public class ChangeStatusCommand implements Command {
 
@@ -21,7 +22,10 @@ public class ChangeStatusCommand implements Command {
             previouState = task.getState();
             task.setState(newState);
             task.notifyObservers(
-                "Status alterado para: " + newState.getStateName()
+                new NotificationEvent(
+                    "Tarefa: " + task.getTitle(),
+                    "Status alterado para: " + newState.getStateName()
+                )
             );
 
             executed = true;
@@ -33,7 +37,10 @@ public class ChangeStatusCommand implements Command {
         if (executed && previouState != null) {
             task.setState(previouState);
             task.notifyObservers(
-                "Status revertido para: " + previouState.getStateName()
+                new NotificationEvent(
+                    "Tarefa: " + task.getTitle(),
+                    "Status revertido para: " + previouState.getStateName()
+                )
             );
 
             executed = false;

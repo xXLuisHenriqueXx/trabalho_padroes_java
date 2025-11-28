@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import observer.NotificationEvent;
 import observer.Observer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +14,7 @@ public class User implements Observer {
     private String name;
     private String email;
     private final List<Board> boards;
-    private final List<String> notifications;
+    private final List<NotificationEvent> notifications;
 
     public User(String name, String email) {
         this.name = name;
@@ -25,7 +26,9 @@ public class User implements Observer {
     public void addBoard(Board board) {
         if (board != null && !boards.contains(board)) {
             boards.add(board);
+
             board.addMember(this);
+
             board.addObserver(this);
         }
     }
@@ -37,18 +40,27 @@ public class User implements Observer {
     }
 
     public void viewNotifications() {
-        LOGGER.info("Notificacoes de {}:", name);
+        LOGGER.info("Notificações de {}:", name);
+
         if (notifications.isEmpty()) {
-            LOGGER.info("Nenhuma notificacao no momento.");
+            LOGGER.info("Nenhuma notificação no momento.");
         } else {
-            notifications.forEach(msg -> LOGGER.info(" - {}", msg));
+            notifications.forEach(ev ->
+                LOGGER.info(" - {}: {}", ev.getSource(), ev.getMessage())
+            );
         }
     }
 
     @Override
-    public void update(String message) {
-        notifications.add(message);
-        LOGGER.info("[ {} ] recebeu notificacao: {}", name, message);
+    public void update(NotificationEvent event) {
+        notifications.add(event);
+
+        LOGGER.info(
+            "[{}] recebeu notificacao de {}: {}",
+            name,
+            event.getSource(),
+            event.getMessage()
+        );
     }
 
     public String getName() {
@@ -71,21 +83,7 @@ public class User implements Observer {
         return boards;
     }
 
-    public List<String> getNotifications() {
+    public List<NotificationEvent> getNotifications() {
         return notifications;
-    }
-
-    @Override
-    public String toString() {
-        return (
-            "Usuario{" +
-            "nome = " +
-            name +
-            ", email = " +
-            email +
-            ", quadros = " +
-            boards.size() +
-            "}"
-        );
     }
 }

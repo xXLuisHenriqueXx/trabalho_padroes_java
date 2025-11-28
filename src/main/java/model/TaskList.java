@@ -25,6 +25,7 @@ public class TaskList {
     public void addTask(Task task) {
         if (task != null && !tasks.contains(task)) {
             tasks.add(task);
+
             LOGGER.info(
                 "Tarefa adicionada a lista {}: {}",
                 name,
@@ -46,7 +47,9 @@ public class TaskList {
     public void moveTask(Task task, TaskList destiny) {
         if (tasks.contains(task) && destiny != null) {
             removeTask(task);
+
             destiny.addTask(task);
+
             LOGGER.info("Tarefa movida de {} para {}", name, destiny.getName());
         }
     }
@@ -54,6 +57,7 @@ public class TaskList {
     public void executeCommand(Command comand) {
         if (comand != null) {
             comand.execute();
+
             history.add(comand);
         }
     }
@@ -61,6 +65,7 @@ public class TaskList {
     public void undoLastCommand() {
         if (!history.isEmpty()) {
             Command lastCommand = history.remove(history.size() - 1);
+
             lastCommand.undo();
         }
     }
@@ -75,12 +80,5 @@ public class TaskList {
 
     public List<Task> getTasks() {
         return tasks;
-    }
-
-    @Override
-    public String toString() {
-        return (
-            "Lista{" + "nome = " + name + ", tarefas = " + tasks.size() + "}"
-        );
     }
 }
