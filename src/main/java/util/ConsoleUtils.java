@@ -13,7 +13,11 @@ public class ConsoleUtils {
 
     public static void clear() {
         try {
-            Process process = new ProcessBuilder("cmd", "/c", "cls")
+            Process process = new ProcessBuilder(
+                "C:\\Windows\\System32\\cmd.exe",
+                "/c",
+                "cls"
+            )
                 .inheritIO()
                 .start();
 
