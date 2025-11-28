@@ -25,7 +25,7 @@ public class TaskListService {
             );
         }
 
-        TaskList taskList = new TaskList(taskListName);
+        TaskList taskList = new TaskList(taskListName, board);
         board.addTaskList(taskList);
 
         LOGGER.info(

@@ -13,10 +13,12 @@ public class TaskList {
     );
 
     private String name;
+    private final Board board;
     private final List<Task> tasks;
     private final List<Command> history;
 
-    public TaskList(String name) {
+    public TaskList(String name, Board board) {
+        this.board = board;
         this.name = name;
         this.tasks = new ArrayList<>();
         this.history = new ArrayList<>();
@@ -25,6 +27,8 @@ public class TaskList {
     public void addTask(Task task) {
         if (task != null && !tasks.contains(task)) {
             tasks.add(task);
+
+            task.addObserver(board);
 
             LOGGER.info(
                 "Tarefa adicionada a lista {}: {}",
@@ -36,6 +40,8 @@ public class TaskList {
 
     public void removeTask(Task task) {
         if (tasks.remove(task)) {
+            task.removeObserver(board);
+
             LOGGER.info(
                 "Tarefa removida da lista {}: {}",
                 name,

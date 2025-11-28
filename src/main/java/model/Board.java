@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import observer.BaseSubject;
 import observer.NotificationEvent;
+import observer.Observer;
 
-public class Board extends BaseSubject {
+public class Board extends BaseSubject implements Observer {
 
     private String name;
     private final List<TaskList> taskLists;
@@ -44,6 +45,7 @@ public class Board extends BaseSubject {
     public void addMember(User user) {
         if (user != null && !members.contains(user)) {
             members.add(user);
+            addObserver(user);
 
             notifyObservers(
                 new NotificationEvent(
@@ -52,6 +54,11 @@ public class Board extends BaseSubject {
                 )
             );
         }
+    }
+
+    @Override
+    public void update(NotificationEvent event) {
+        notifyObservers(event);
     }
 
     public String getName() {
