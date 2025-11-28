@@ -2,6 +2,7 @@ package command;
 
 import model.Task;
 import model.TaskList;
+import observer.NotificationEvent;
 
 public class AddTaskCommand implements Command {
 
@@ -19,6 +20,13 @@ public class AddTaskCommand implements Command {
         if (!taskList.getTasks().contains(task)) {
             taskList.addTask(task);
 
+            task.notifyObservers(
+                new NotificationEvent(
+                    "Tarefa: " + task.getTitle(),
+                    "Adicionada a lista: " + taskList.getName()
+                )
+            );
+
             executed = true;
         }
     }
@@ -27,6 +35,13 @@ public class AddTaskCommand implements Command {
     public void undo() {
         if (executed && taskList.getTasks().contains(task)) {
             taskList.removeTask(task);
+
+            task.notifyObservers(
+                new NotificationEvent(
+                    "Tarefa: " + task.getTitle(),
+                    "Removida da lista: " + taskList.getName()
+                )
+            );
 
             executed = false;
         }

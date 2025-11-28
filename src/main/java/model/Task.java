@@ -23,26 +23,14 @@ public class Task extends BaseSubject {
 
     public void execute() {
         state.execute();
-
-        notifyObservers(
-            new NotificationEvent("Tarefa: " + title, "Executando tarefa")
-        );
     }
 
     public void complete() {
         state.complete();
-
-        notifyObservers(
-            new NotificationEvent("Tarefa: " + title, "Tarefa concluida")
-        );
     }
 
     public void reopen() {
         state.reopen();
-
-        notifyObservers(
-            new NotificationEvent("Tarefa: " + title, "Tarefa reaberta")
-        );
     }
 
     public String getTitle() {
@@ -53,10 +41,7 @@ public class Task extends BaseSubject {
         this.title = title;
 
         notifyObservers(
-            new NotificationEvent(
-                "Tarefa: " + title,
-                "Titulo alterado para: " + title
-            )
+            new NotificationEvent("Tarefa: " + title, "Titulo alterado")
         );
     }
 
@@ -68,10 +53,7 @@ public class Task extends BaseSubject {
         this.description = description;
 
         notifyObservers(
-            new NotificationEvent(
-                "Tarefa: " + title,
-                "Descricao alterada para: " + description
-            )
+            new NotificationEvent("Tarefa: " + title, "Descricao alterada")
         );
     }
 
@@ -82,10 +64,7 @@ public class Task extends BaseSubject {
     public void setPriority(Priority priority) {
         this.priority = priority;
         notifyObservers(
-            new NotificationEvent(
-                "Tarefa: " + title,
-                "Prioridade alterada para: " + priority
-            )
+            new NotificationEvent("Tarefa: " + title, "Prioridade alterada")
         );
     }
 
@@ -96,10 +75,7 @@ public class Task extends BaseSubject {
     public void setResponsible(User responsible) {
         this.responsible = responsible;
         notifyObservers(
-            new NotificationEvent(
-                "Tarefa: " + title,
-                "Responsavel alterado para: " + responsible.getName()
-            )
+            new NotificationEvent("Tarefa: " + title, "Responsavel alterado")
         );
     }
 

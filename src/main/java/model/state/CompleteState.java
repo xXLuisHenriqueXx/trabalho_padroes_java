@@ -1,6 +1,7 @@
 package model.state;
 
 import model.Task;
+import observer.NotificationEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,19 +17,26 @@ public class CompleteState extends TaskState {
 
     @Override
     public void execute() {
-        LOGGER.info(
+        LOGGER.warn(
             "A tarefa ja foi concluida. Reabra antes de iniciar novamente."
         );
     }
 
     @Override
     public void complete() {
-        LOGGER.info("A tarefa ja esta concluida.");
+        LOGGER.warn("A tarefa ja esta concluida.");
     }
 
     @Override
     public void reopen() {
         task.setState(new TodoState(task));
+
+        task.notifyObservers(
+            new NotificationEvent(
+                "Tarefa: " + task.getTitle(),
+                "Tarefa reaberta"
+            )
+        );
     }
 
     @Override

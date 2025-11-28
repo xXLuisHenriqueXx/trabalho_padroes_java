@@ -1,6 +1,7 @@
 package model.state;
 
 import model.Task;
+import observer.NotificationEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,17 +17,31 @@ public class InProgressState extends TaskState {
 
     @Override
     public void execute() {
-        LOGGER.info("A tarefa ja esta em progresso.");
+        LOGGER.warn("A tarefa ja esta em progresso.");
     }
 
     @Override
     public void complete() {
         task.setState(new CompleteState(task));
+
+        task.notifyObservers(
+            new NotificationEvent(
+                "Tarefa: " + task.getTitle(),
+                "Tarefa concluída"
+            )
+        );
     }
 
     @Override
     public void reopen() {
         task.setState(new TodoState(task));
+
+        task.notifyObservers(
+            new NotificationEvent(
+                "Tarefa: " + task.getTitle(),
+                "Tarefa reaberta"
+            )
+        );
     }
 
     @Override

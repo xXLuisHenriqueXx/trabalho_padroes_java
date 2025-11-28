@@ -2,6 +2,7 @@ package command;
 
 import model.Task;
 import model.TaskList;
+import observer.NotificationEvent;
 
 public class MoveTaskCommand implements Command {
 
@@ -25,6 +26,16 @@ public class MoveTaskCommand implements Command {
         ) {
             origin.moveTask(task, destiny);
 
+            task.notifyObservers(
+                new NotificationEvent(
+                    "Tarefa: " + task.getTitle(),
+                    "Movida de " +
+                        origin.getName() +
+                        " para " +
+                        destiny.getName()
+                )
+            );
+
             executed = true;
         }
     }
@@ -33,6 +44,16 @@ public class MoveTaskCommand implements Command {
     public void undo() {
         if (executed && destiny.getTasks().contains(task)) {
             destiny.moveTask(task, origin);
+
+            task.notifyObservers(
+                new NotificationEvent(
+                    "Tarefa: " + task.getTitle(),
+                    "Movida de " +
+                        destiny.getName() +
+                        " para " +
+                        origin.getName()
+                )
+            );
 
             executed = false;
         }
