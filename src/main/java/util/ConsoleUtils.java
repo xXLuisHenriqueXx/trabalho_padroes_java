@@ -9,14 +9,20 @@ public class ConsoleUtils {
         ConsoleUtils.class
     );
 
+    private ConsoleUtils() {}
+
     public static void clear() {
         try {
-            new ProcessBuilder("cmd", "/c", "cls")
+            Process process = new ProcessBuilder("cmd", "/c", "cls")
                 .inheritIO()
-                .start()
-                .waitFor();
+                .start();
+
+            process.waitFor();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            LOGGER.error("A execução foi interrompida ao limpar o console.", e);
         } catch (Exception e) {
-            LOGGER.error("Nao foi possivel limpar o console.");
+            LOGGER.error("Não foi possível limpar o console.", e);
         }
     }
 }
