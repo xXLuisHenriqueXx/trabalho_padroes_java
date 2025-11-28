@@ -40,10 +40,10 @@ public class User implements Observer {
     }
 
     public void viewNotifications() {
-        LOGGER.info("Notificações de {}:", name);
+        LOGGER.info("Notificacoes de {}:", name);
 
         if (notifications.isEmpty()) {
-            LOGGER.info("Nenhuma notificação no momento.");
+            LOGGER.info("Nenhuma notificacao no momento.");
         } else {
             notifications.forEach(ev ->
                 LOGGER.info(" - {}: {}", ev.getSource(), ev.getMessage())

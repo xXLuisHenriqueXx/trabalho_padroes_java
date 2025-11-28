@@ -16,6 +16,7 @@ model\User.class
 singleton\TaskManager.class
 model\state\CompleteState.class
 model\Board.class
+app\controller\AppController.class
 model\state\TaskState.class
 factory\PriorityTaskFactory.class
 singleton\TaskManager$TaskManagerHelper.class
